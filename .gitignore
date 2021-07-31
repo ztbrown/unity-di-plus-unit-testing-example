@@ -57,6 +57,9 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# Exceptions for .NET NUnit project (this might be a red flag)
+!Tests/Unit/Unit.csproj
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
