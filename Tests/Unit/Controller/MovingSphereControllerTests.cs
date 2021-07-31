@@ -41,7 +41,7 @@ namespace Tests.NUnit
         }
 
         [Test]
-        public void UpdatePosition_ItNormalizesTheVector() 
+        public void UpdatePosition_ItClampsTheInput() 
         {
             _controller = new MovingSphereController();
 

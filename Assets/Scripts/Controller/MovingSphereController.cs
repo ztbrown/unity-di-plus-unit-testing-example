@@ -6,7 +6,7 @@ public class MovingSphereController : ISphereController
 {
     public Vector3 UpdatePosition(Vector2 input) 
     {
-        input.Normalize();
+        input = Vector2.ClampMagnitude(input, 1f);
         return new Vector3(input.x,0.5f,input.y);
     }
 }
