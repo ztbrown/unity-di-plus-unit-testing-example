@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
+using System;
 
 namespace Tests.NUnit
 {
@@ -13,25 +14,42 @@ namespace Tests.NUnit
         {
             _controller = new MovingSphereController();
 
-            var result = _controller.UpdatePosition(0f,0f);
+            Vector2 input = new Vector2(0f,0f);
 
-            Assert.AreEqual(result.x, 0f);
+            var result = _controller.UpdatePosition(input);
+
+            Assert.AreEqual(0f, result.x);
             // the ball floats up 0.5 in the y direction
-            Assert.AreEqual(result.y, 0.5f);
-            Assert.AreEqual(result.z, 0.0f);
+            Assert.AreEqual(0.5f, result.y);
+            Assert.AreEqual(0f, result.z);
         }
 
-        [Test]
-        public void UpdatePosition_ReceivesPlayerInput1f1fAndReturnsChangeInDisplacement()
+        [TestCase(1, 0)]
+        [TestCase(0, 1)]
+        public void UpdatePosition_ReceivesPlayerInputAndReturnsChangeInDisplacement(float x, float y)
         {
             _controller = new MovingSphereController();
 
-            var result = _controller.UpdatePosition(1f,1f);
+            Vector2 input = new Vector2(x,y);
 
-            Assert.AreEqual(result.x, 1f);
+            var result = _controller.UpdatePosition(input);
+
+            Assert.AreEqual(x, result.x);
             // the ball floats up 0.5 in the y direction
-            Assert.AreEqual(result.y, 0.5f);
-            Assert.AreEqual(result.z, 1f);
+            Assert.AreEqual(0.5f, result.y);
+            Assert.AreEqual(y, result.z);
+        }
+
+        [Test]
+        public void UpdatePosition_ItNormalizesTheVector() 
+        {
+            _controller = new MovingSphereController();
+
+            Vector2 input = new Vector2(1,1);
+
+            var result = _controller.UpdatePosition(input);
+
+            Assert.AreEqual((float)(Math.Sqrt(Math.Pow(input.x, 2.0) + Math.Pow(input.y, 2.0)) / 2.0), result.x);
         }
     }
 }

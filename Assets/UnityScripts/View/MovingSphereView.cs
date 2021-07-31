@@ -8,7 +8,9 @@ public class MovingSphereView : MonoBehaviour
 
     void Update() 
     {
-        transform.localPosition = _sphereController
-            .UpdatePosition(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 localPosition;
+        localPosition.x = Input.GetAxis("Horizontal");
+        localPosition.y = Input.GetAxis("Vertical");
+        transform.localPosition = _sphereController.UpdatePosition(localPosition);
     }
 }

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MovingSphereController : ISphereController
 {
-    public Vector3 UpdatePosition(float x, float y) 
+    public Vector3 UpdatePosition(Vector2 input) 
     {
-        return new Vector3(x,0.5f,y);
+        input.Normalize();
+        return new Vector3(input.x,0.5f,input.y);
     }
 }
 
 interface ISphereController
 {
-    public Vector3 UpdatePosition(float x, float y);
+    public Vector3 UpdatePosition(Vector2 input);
 }
