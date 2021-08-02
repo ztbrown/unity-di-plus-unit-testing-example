@@ -11,6 +11,11 @@ public class SphereController : ISphereController
         _model = model;
     }
 
+    public void Awake(Vector3 input)
+    {
+        _model.Awake(input);
+    }
+
     public Vector3 Update(Vector2 input) 
     {
         return _model.UpdatePosition(input);
@@ -21,4 +26,5 @@ public class SphereController : ISphereController
 public interface ISphereController
 {
     public Vector3 Update(Vector2 input);
+    public void Awake(Vector3 input);
 }

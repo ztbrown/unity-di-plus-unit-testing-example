@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class SphereModel : ISphereModel
 {
+    Vector3 _localPosition;
+
+    public void Awake(Vector3 localPosition)
+    {
+        _localPosition = localPosition;
+    }
+
     public Vector3 UpdatePosition(Vector2 input) 
     {
         input = Vector2.ClampMagnitude(input, 1f);
-        return new Vector3(input.x,0.5f,input.y);
+        _localPosition += new Vector3(input.x, 0.0f, input.y);
+        return _localPosition; 
     }
 
 }
@@ -15,5 +23,6 @@ public class SphereModel : ISphereModel
 public interface ISphereModel
 {
     public Vector3 UpdatePosition(Vector2 input);
+    public void Awake(Vector3 input);
 }
 

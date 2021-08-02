@@ -6,6 +6,11 @@ public class MovingSphereView : MonoBehaviour
     [Inject]
     ISphereController _sphereController;
 
+    void Awake()
+    {
+        _sphereController.Awake(transform.localPosition);
+    }
+
     void Update() 
     {
         Vector2 localPosition;
