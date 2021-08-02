@@ -11,6 +11,6 @@ public class MovingSphereView : MonoBehaviour
         Vector2 localPosition;
         localPosition.x = Input.GetAxis("Horizontal");
         localPosition.y = Input.GetAxis("Vertical");
-        transform.localPosition = _sphereController.UpdatePosition(localPosition);
+        transform.localPosition = _sphereController.Update(localPosition);
     }
 }

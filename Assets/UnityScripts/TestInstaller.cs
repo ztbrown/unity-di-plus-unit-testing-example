@@ -6,6 +6,7 @@ public class TestInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<ISphereController>().To<MovingSphereController>().AsSingle();
+        Container.Bind<ISphereController>().To<SphereController>().AsSingle();
+        Container.Bind<ISphereModel>().To<SphereModel>().AsSingle();
     }
 }
